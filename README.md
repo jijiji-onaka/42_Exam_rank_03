@@ -18,18 +18,16 @@ R 5.2 5.2 3.01 3.02 o
 1行目
 
 ```
-zoneの横幅　zoneの縦幅　四角形以外の部分を埋める文字
+出力する背景の横幅　出力する背景の縦幅　四角形以外の部分を埋める文字
 
-0 < zoneの横幅 <= 300
-0 < zoneの縦幅 <= 300
+0 < 出力する背景の横幅 <= 300
+0 < 出力する背景の縦幅 <= 300
 ```
 
 2行目
 
 ```
-
-r　squareの左上の角のx_index　squareの左上の角のy_index \
-squareの横幅　squareの縦幅 四角形を作る文字
+r　squareの左上の角のx_index　squareの左上の角のy_index　squareの横幅　squareの縦幅 四角形を作る文字
 
 squareの左上の角のx_index != 0
 squareの左上の角のy_index != 0
@@ -38,16 +36,14 @@ squareの左上の角のy_index != 0
 3行目
 
 ```
-
-R　squareの左上の角のx_index　squareの左上の角のy_index \
-squareの横幅　squareの縦幅 四角形を作る文字
+R　squareの左上の角のx_index　squareの左上の角のy_index　squareの横幅　squareの縦幅 四角形を作る文字
 
 squareの左上の角のx_index != 0
 squareの左上の角のy_index != 0
 ```
 
 rとRはtype identifierで
-r→真ん中が空いた四角形を出力。(幅の片方が2マスなら空かない)
+r→真ん中が空いた四角形を出力。(横幅、縦幅のどちらか片方が2マスなら空かない)
 R→全てが埋まった四角形を出力する。
 
 上のファイルだとこのように出力されます。
