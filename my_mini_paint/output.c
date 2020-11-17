@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   output.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tjinichi <tjinichi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/15 01:09:09 by tjinichi          #+#    #+#             */
-/*   Updated: 2020/11/15 01:15:51 by tjinichi         ###   ########.fr       */
+/*   Created: 2020/11/17 15:35:29 by tjinichi          #+#    #+#             */
+/*   Updated: 2020/11/17 16:16:58 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "micro_paint.h"
+#include "mini_paint.h"
 
-void		output_rectangle(char *zone, t_zone zone_info)
+int				output_rectangle(FILE *fp, char *zone, t_zone zone_info)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < zone_info.height)
@@ -23,24 +23,29 @@ void		output_rectangle(char *zone, t_zone zone_info)
 		write(1, "\n", 1);
 		i++;
 	}
+	free_and_close(&zone, fp);
+	return (NO_ERROR);
 }
 
-static int	empty_or_filled_rectangle(int x, int y, t_rec rec)
+static int		empty_or_filled_rectangle(int x, int y, t_rec rec)
 {
-	if ((x < rec.left_corner_x || rec.left_corner_x + rec.width < x) || \
-			(y < rec.left_corner_y || rec.left_corner_y + rec.height < y))
-		return (NO_REC);
-	if ((x - rec.left_corner_x < 1 || rec.left_corner_x + rec.width - x < 1) || \
-			(y - rec.left_corner_y < 1 || rec.left_corner_y + rec.height - y < 1))
-		return (EMPTY_REC);
-	return (FILLED_REC);
+	double	distance;
+
+	distance = sqrtf(powf(x - rec.center_x, 2.0) + powf(y - rec.center_y, 2.0));
+	if (distance <= rec.radius)
+	{
+		if (rec.radius - distance < 1)
+			return (EMPTY_REC);
+		return (FILLED_REC);
+	}
+	return (NO_REC);
 }
 
-void		create_output(char **zone, t_rec rec, t_zone *zone_info)
+void			create_output(char **zone, t_rec rec, t_zone *zone_info)
 {
-	int	x;
-	int	y;
-	int rc;
+	int		y;
+	int		x;
+	int		rc;
 
 	y = 0;
 	while (y < zone_info->height)
@@ -49,8 +54,8 @@ void		create_output(char **zone, t_rec rec, t_zone *zone_info)
 		while (x < zone_info->width)
 		{
 			rc = empty_or_filled_rectangle(x, y, rec);
-			if ((rec.type == 'r' && rc == 2) || \
-					(rec.type == 'R' && rc >= 1))
+			if ((rec.type == 'c' && rc == EMPTY_REC) || \
+					(rec.type == 'C' && rc))
 				(*zone)[y * zone_info->width + x] = rec.character;
 			x++;
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   micro_paint.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tjinichi <tjinichi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 01:02:18 by tjinichi          #+#    #+#             */
-/*   Updated: 2020/11/15 01:13:57 by tjinichi         ###   ########.fr       */
+/*   Updated: 2020/11/17 16:17:05 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,5 @@ int	main(int argc, char *argv[])
 		free_and_close(&zone, fp);
 		return (error_return(ERR_FILE));
 	}
-	output_rectangle(zone, zone_info);
-	free_and_close(&zone, fp);
-	return (NO_ERROR);
+	return (output_rectangle(fp, zone, zone_info));
 }

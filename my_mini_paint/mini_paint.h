@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   micro_paint.h                                      :+:      :+:    :+:   */
+/*   mini_paint.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tjinichi <tjinichi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/15 01:00:41 by tjinichi          #+#    #+#             */
-/*   Updated: 2020/11/15 01:16:01 by tjinichi         ###   ########.fr       */
+/*   Created: 2020/11/17 15:01:19 by tjinichi          #+#    #+#             */
+/*   Updated: 2020/11/17 16:17:19 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MICRO_PAINT_H
-# define MICRO_PAINT_H
+#ifndef MINI_PAINT_H
+# define MINI_PAINT_H
 
 # include <stdio.h>
-# include <unistd.h>
 # include <stdlib.h>
+# include <unistd.h>
+# include <math.h>
+
+# define REC_INFOMATION_SIZE 5
 # define INVALID 0
 # define VALID 1
 # define NO_ERROR 0
@@ -36,19 +39,19 @@ typedef struct	s_zone
 typedef struct	s_rec
 {
 	char		type;
-	double		left_corner_x;
-	double		left_corner_y;
-	double		width;
-	double		height;
+	double		center_x;
+	double		center_y;
+	double		radius;
 	char		character;
 }				t_rec;
 
+int				error_return(char *str);
 void			free_and_close(char **ptr, FILE *fp);
-int				error_return(char *s);
 int				zone_info_OutOfRange(t_zone *zone_info);
 int				rec_OutOfRange(t_rec rec);
+int				output_rectangle(FILE *fp, char *zone, t_zone zone_info);
+void			create_output(char **zone, t_rec rec, t_zone *zone_info);
 char			*parse_zone(FILE *fp, t_zone *zone_info);
 int				parse_rec(FILE *fp, char **zone, t_zone *zone_info);
-void			create_output(char **zone, t_rec rec, t_zone *zone_info);
-void			output_rectangle(char *zone, t_zone zone_info);
+
 #endif
