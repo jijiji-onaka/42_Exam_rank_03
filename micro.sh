@@ -74,3 +74,4 @@ else
 fi
 
 rm -rf result
+rm -f yours
