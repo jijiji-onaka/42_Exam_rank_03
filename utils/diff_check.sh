@@ -16,7 +16,7 @@ if [ ${EDCODE} -eq 1 ] ; then
     echo -e "\033[1;31m[KO!!!]\033[0;m"
     echo -e "\033[4;33m$3\033[0;m <-- このファイルでdiffが出ています。(下にファイルの内容)"
     cat $3
-    echo "\n"
+    echo ""
 elif [ ${EDCODE} -eq 0 ] ; then
     exit 1
 fi
