@@ -73,5 +73,5 @@ else
     echo -e  "\n\033[0;31m上にdiffがあるので書き直してみてください！！\033[0;m\n"
 fi
 
-# rm -rf result
-# rm -f yours
+rm -rf result
+rm -f yours
