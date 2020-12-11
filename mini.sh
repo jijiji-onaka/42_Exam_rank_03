@@ -67,9 +67,9 @@ if test $? -eq 1; then
 fi
 
 if test $COUNT -eq 9; then
-    echo -e "\n\033[0;32m$USER さん！\nちゃんと書けています！完璧！！！\nExamもこの調子で頑張りましょう！！！\033[0;39m\n"
+    echo -e "\n\033[0;32m$USER san!!\nIt's written correctly! Perfect!!!\nLet's keep this up and do well on the Exam!!!!\033[0;39m\n"
 else
-    echo -e  "\n\033[0;31m上にdiffがあるので書き直してみてください！！\033[0;m\n"
+    echo -e  "\n\033[0;31mThere's a diff above so you can rewrite the code!!!\033[0;m\n"
 fi
 
 rm -rf result2
