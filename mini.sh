@@ -67,9 +67,14 @@ if test $? -eq 1; then
 fi
 
 if test $COUNT -eq 9; then
-    echo -e "\n\033[0;32m$USER san!!\nIt's written correctly! Perfect!!!\nLet's keep this up and do well on the Exam!!!!\033[0;39m\n"
+        echo -e "[English]\n\n\033[0;32m$USER san!!\nIt's written correctly! Perfect!!!\nLet's keep this up and do well on the Exam!!!!\033[0;39m\n\n\
+[한국어]\n\n\033[0;32m$USER san!!\n제대로 작성되어 있습니다! 완벽 해! \nn이것을 유지하고 시험을 잘합시다 !!!!\n\n\033[0;39m\n\
+[日本語]\n\n\033[0;32m$USER san！！ちゃんと書けてます！！完璧！！\nExamもこの調子で頑張ってください！！\033[0;39m\n"
 else
-    echo -e  "\n\033[0;31mThere's a diff above so you can rewrite the code!!!\033[0;m\n"
+    echo -e  "[English]\n\n\033[0;31mThere are differences above, so rewrite the code!!!\033[0;m\n\n\
+[한국어]\n\n\033[0;31m위의 차이점이 있으므로 코드를 다시 작성하십시오!!!\n\n\033[0;39m\n\
+[日本語]\n\n\033[0;31m上にdiffがあるので書き直してみてください！！！\033[0;39m\n"
+
 fi
 
 rm -rf result2
